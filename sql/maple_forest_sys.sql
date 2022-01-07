@@ -1,17 +1,17 @@
 /*
  Navicat Premium Data Transfer
 
- Source Server         : localhost
+ Source Server         : dell 5.7
  Source Server Type    : MySQL
  Source Server Version : 50736
- Source Host           : localhost:3306
+ Source Host           : 192.168.0.9:3306
  Source Schema         : maple_forest_sys
 
  Target Server Type    : MySQL
  Target Server Version : 50736
  File Encoding         : 65001
 
- Date: 06/01/2022 09:16:02
+ Date: 08/01/2022 08:12:27
 */
 
 SET NAMES utf8mb4;
@@ -138,7 +138,7 @@ CREATE TABLE `user` (
   `user_name` varchar(30) NOT NULL COMMENT '用户名',
   `nick_name` varchar(20) NOT NULL DEFAULT '' COMMENT '昵称',
   `password` varchar(256) DEFAULT '' COMMENT '密码',
-  `phone_number` int(11) unsigned DEFAULT NULL COMMENT '手机号',
+  `phone_number` bigint(11) unsigned DEFAULT NULL COMMENT '手机号',
   `email` varchar(50) DEFAULT '' COMMENT '邮箱地址',
   `status` tinyint(1) unsigned NOT NULL COMMENT '帐号状态（0正常 1停用）',
   `del_flag` tinyint(1) unsigned NOT NULL COMMENT '删除标志（0代表存在 2代表删除）',
@@ -148,7 +148,7 @@ CREATE TABLE `user` (
   `update_time` datetime DEFAULT NULL COMMENT '更新时间',
   `remark` varchar(255) DEFAULT '' COMMENT '备注（用户所属部门）',
   PRIMARY KEY (`user_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='用户信息表';
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='用户信息表';
 
 -- ----------------------------
 -- Table structure for user_department
