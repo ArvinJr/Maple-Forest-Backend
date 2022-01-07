@@ -9,5 +9,5 @@ spring:
     password: Arvin@01
 
 mybatis:
-  mapper-locations: classpath:com/arvin/product/mapper/*.xml
+  mapper-locations: classpath:com/arvin/mapleforestbackend/mapper/*.xml
   type-aliases-package: com.arvin.mapleforestbackend.POJO
