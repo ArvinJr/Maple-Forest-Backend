@@ -6,7 +6,7 @@
     <result column="user_name" jdbcType="VARCHAR" property="userName" />
     <result column="nick_name" jdbcType="VARCHAR" property="nickName" />
     <result column="password" jdbcType="VARCHAR" property="password" />
-    <result column="phone_number" jdbcType="INTEGER" property="phoneNumber" />
+    <result column="phone_number" jdbcType="BIGINT" property="phoneNumber" />
     <result column="email" jdbcType="VARCHAR" property="email" />
     <result column="status" jdbcType="BIT" property="status" />
     <result column="del_flag" jdbcType="BIT" property="delFlag" />
@@ -27,7 +27,7 @@
       create_time, update_by, update_time, 
       remark)
     values (#{userId,jdbcType=BIGINT}, #{userName,jdbcType=VARCHAR}, #{nickName,jdbcType=VARCHAR}, 
-      #{password,jdbcType=VARCHAR}, #{phoneNumber,jdbcType=INTEGER}, #{email,jdbcType=VARCHAR}, 
+      #{password,jdbcType=VARCHAR}, #{phoneNumber,jdbcType=BIGINT}, #{email,jdbcType=VARCHAR},
       #{status,jdbcType=BIT}, #{delFlag,jdbcType=BIT}, #{createBy,jdbcType=VARCHAR}, 
       #{createTime,jdbcType=TIMESTAMP}, #{updateBy,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP}, 
       #{remark,jdbcType=VARCHAR})
@@ -37,65 +37,7 @@
     set user_name = #{userName,jdbcType=VARCHAR},
       nick_name = #{nickName,jdbcType=VARCHAR},
       password = #{password,jdbcType=VARCHAR},
-      phone_number = #{phoneNumber,jdbcType=INTEGER},
-      email = #{email,jdbcType=VARCHAR},
-      status = #{status,jdbcType=BIT},
-      del_flag = #{delFlag,jdbcType=BIT},
-      create_by = #{createBy,jdbcType=VARCHAR},
-      create_time = #{createTime,jdbcType=TIMESTAMP},
-      update_by = #{updateBy,jdbcType=VARCHAR},
-      update_time = #{updateTime,jdbcType=TIMESTAMP},
-      remark = #{remark,jdbcType=VARCHAR}
-    where user_id = #{userId,jdbcType=BIGINT}
-  </update>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
-    select user_id, user_name, nick_name, password, phone_number, email, status, del_flag, 
-    create_by, create_time, update_by, update_time, remark
-    from user
-    where user_id = #{userId,jdbcType=BIGINT}
-  </select>
-  <select id="selectAll" resultMap="BaseResultMap">
-    select user_id, user_name, nick_name, password, phone_number, email, status, del_flag, 
-    create_by, create_time, update_by, update_time, remark
-    from user
-  </select>
-  <resultMap id="BaseResultMap" type="com.arvin.mapleforestbackend.POJO.User">
-    <id column="user_id" jdbcType="BIGINT" property="userId" />
-    <result column="user_name" jdbcType="VARCHAR" property="userName" />
-    <result column="nick_name" jdbcType="VARCHAR" property="nickName" />
-    <result column="password" jdbcType="VARCHAR" property="password" />
-    <result column="phone_number" jdbcType="INTEGER" property="phoneNumber" />
-    <result column="email" jdbcType="VARCHAR" property="email" />
-    <result column="status" jdbcType="BIT" property="status" />
-    <result column="del_flag" jdbcType="BIT" property="delFlag" />
-    <result column="create_by" jdbcType="VARCHAR" property="createBy" />
-    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
-    <result column="update_by" jdbcType="VARCHAR" property="updateBy" />
-    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
-    <result column="remark" jdbcType="VARCHAR" property="remark" />
-  </resultMap>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
-    delete from user
-    where user_id = #{userId,jdbcType=BIGINT}
-  </delete>
-  <insert id="insert" parameterType="com.arvin.mapleforestbackend.POJO.User">
-    insert into user (user_id, user_name, nick_name, 
-      password, phone_number, email, 
-      status, del_flag, create_by, 
-      create_time, update_by, update_time, 
-      remark)
-    values (#{userId,jdbcType=BIGINT}, #{userName,jdbcType=VARCHAR}, #{nickName,jdbcType=VARCHAR}, 
-      #{password,jdbcType=VARCHAR}, #{phoneNumber,jdbcType=INTEGER}, #{email,jdbcType=VARCHAR}, 
-      #{status,jdbcType=BIT}, #{delFlag,jdbcType=BIT}, #{createBy,jdbcType=VARCHAR}, 
-      #{createTime,jdbcType=TIMESTAMP}, #{updateBy,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP}, 
-      #{remark,jdbcType=VARCHAR})
-  </insert>
-  <update id="updateByPrimaryKey" parameterType="com.arvin.mapleforestbackend.POJO.User">
-    update user
-    set user_name = #{userName,jdbcType=VARCHAR},
-      nick_name = #{nickName,jdbcType=VARCHAR},
-      password = #{password,jdbcType=VARCHAR},
-      phone_number = #{phoneNumber,jdbcType=INTEGER},
+      phone_number = #{phoneNumber,jdbcType=BIGINT},
       email = #{email,jdbcType=VARCHAR},
       status = #{status,jdbcType=BIT},
       del_flag = #{delFlag,jdbcType=BIT},
