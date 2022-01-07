@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.arvin.mapleforestbackend.mapper.DepartmentMapper" >
+  <resultMap id="BaseResultMap" type="com.arvin.mapleforestbackend.POJO.Department" >
+    <id column="department_id" property="departmentId" jdbcType="BIGINT" />
+    <result column="department_name" property="departmentName" jdbcType="VARCHAR" />
+    <result column="department_key" property="departmentKey" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="BIT" />
+    <result column="del_flag" property="delFlag" jdbcType="BIT" />
+    <result column="create_by" property="createBy" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_by" property="updateBy" jdbcType="VARCHAR" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from department
+    where department_id = #{departmentId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.arvin.mapleforestbackend.POJO.Department" >
+    insert into department (department_id, department_name, department_key, 
+      status, del_flag, create_by, 
+      create_time, update_by, update_time
+      )
+    values (#{departmentId,jdbcType=BIGINT}, #{departmanetName,jdbcType=VARCHAR}, #{departmentKey,jdbcType=VARCHAR}, 
+      #{status,jdbcType=BIT}, #{delFlag,jdbcType=BIT}, #{createBy,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateBy,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.arvin.mapleforestbackend.POJO.Department" >
+    update department
+    set department_name = #{departmanetName,jdbcType=VARCHAR},
+      department_key = #{departmentKey,jdbcType=VARCHAR},
+      status = #{status,jdbcType=BIT},
+      del_flag = #{delFlag,jdbcType=BIT},
+      create_by = #{createBy,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_by = #{updateBy,jdbcType=VARCHAR},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where department_id = #{departmentId,jdbcType=BIGINT}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select department_id, department_name, department_key, status, del_flag, create_by, 
+    create_time, update_by, update_time
+    from department
+    where department_id = #{departmentId,jdbcType=BIGINT}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select department_id, department_name, department_key, status, del_flag, create_by, 
+    create_time, update_by, update_time
+    from department
+  </select>
+</mapper>
