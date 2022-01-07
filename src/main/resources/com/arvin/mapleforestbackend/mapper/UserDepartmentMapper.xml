@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.arvin.mapleforestbackend.mapper.UserDepartmentMapper" >
+  <resultMap id="BaseResultMap" type="com.arvin.mapleforestbackend.POJO.UserDepartment" >
+    <id column="user_id" property="userId" jdbcType="BIGINT" />
+    <id column="department_id" property="departmentId" jdbcType="BIGINT" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="map" >
+    delete from user_department
+    where user_id = #{userId,jdbcType=BIGINT}
+      and department_id = #{deparmentId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.arvin.mapleforestbackend.POJO.UserDepartment" >
+    insert into user_department (user_id, department_id)
+    values (#{userId,jdbcType=BIGINT}, #{deparmentId,jdbcType=BIGINT})
+  </insert>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select user_id, department_id
+    from user_department
+  </select>
+</mapper>
