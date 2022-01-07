@@ -23,7 +23,7 @@ SET FOREIGN_KEY_CHECKS = 0;
 DROP TABLE IF EXISTS `department`;
 CREATE TABLE `department` (
   `department_id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '部门ID',
-  `departmanet_name` varchar(30) NOT NULL DEFAULT '' COMMENT '部门名称',
+  `department_name` varchar(30) NOT NULL DEFAULT '' COMMENT '部门名称',
   `department_key` varchar(20) NOT NULL DEFAULT '' COMMENT '部门代码',
   `status` tinyint(1) unsigned NOT NULL COMMENT '部门状态（0正常 1停用）',
   `del_flag` tinyint(1) unsigned NOT NULL COMMENT '删除标志（0代表存在 2代表删除）',
@@ -156,8 +156,8 @@ CREATE TABLE `user` (
 DROP TABLE IF EXISTS `user_department`;
 CREATE TABLE `user_department` (
   `user_id` bigint(20) NOT NULL COMMENT '用户ID',
-  `deparment_id` bigint(20) NOT NULL COMMENT '部门ID',
-  PRIMARY KEY (`user_id`,`deparment_id`)
+  `department_id` bigint(20) NOT NULL COMMENT '部门ID',
+  PRIMARY KEY (`user_id`,`department_id`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='用户与部门的关联表';
 
 -- ----------------------------
