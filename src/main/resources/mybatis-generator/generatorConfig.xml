@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+		PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+		"http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+
+	<properties resource="mybatis-generator/generatorConfig.properties"></properties>
+
+	<context id="mysql" defaultModelType="hierarchical"	targetRuntime="MyBatis3Simple">
+
+		<!-- 自动识别数据库关键字，默认false，如果设置为true，根据SqlReservedWords中定义的关键字列表； 一般保留默认值，遇到数据库关键字（Java关键字），使用columnOverride覆盖 -->
+		<property name="autoDelimitKeywords" value="false" />
+		<!-- 生成的Java文件的编码 -->
+		<property name="javaFileEncoding" value="UTF-8" />
+
+		<!-- beginningDelimiter和endingDelimiter：指明数据库的用于标记数据库对象名的符号，比如ORACLE就是双引号，MYSQL默认是`反引号； -->
+		<property name="beginningDelimiter" value="`" />
+		<property name="endingDelimiter" value="`" />
+
+		<commentGenerator>
+			<property name="suppressDate" value="true"/>
+			<!-- 是否去除自动生成的注释,true：是,false:否 -->
+			<property name="suppressAllComments" value="true"/>
+		</commentGenerator>
+
+		<!--数据库连接的信息：驱动类、连接地址、用户名、密码 -->
+		<jdbcConnection driverClass="${jdbc.driver}"
+		                connectionURL="${jdbc.url}"
+		                userId="${jdbc.userName}"
+		                password="${jdbc.password}">
+		</jdbcConnection>
+
+		<!-- 默认false，把JDBC DECIMAL 和 NUMERIC 类型解析为 Integer，为 true时把JDBC DECIMAL 和
+		NUMERIC 类型解析为java.math.BigDecimal -->
+		<javaTypeResolver>
+			<property name="forceBigDecimals" value="true"/>
+		</javaTypeResolver>
+
+		<!-- 指定javaBean生成的位置
+		targetPackage：生成的类要放的包，真实的包受enableSubPackages属性控制；
+		targetProject：目标项目，指定一个存在的目录下，生成的内容会放到指定目录中，如果目录不存在，MBG不会自动建目录
+		-->
+		<javaModelGenerator targetPackage="com.arvin.mapleforestbackend.POJO" targetProject="src/main/java">
+			<!-- 在targetPackage的基础上，根据数据库的schema再生成一层package，最终生成的类放在这个package下，默认为false；如果多个数据库改为true分目录 -->
+			<property name="enableSubPackages" value="false"/>
+		</javaModelGenerator>
+
+		<!--  指定mapper映射文件生成的位置
+		targetPackage、targetProject同javaModelGenerator中作用一样-->
+		<sqlMapGenerator targetPackage="/resources/com.arvin.mapleforestbackend.mapper" targetProject="src/main">
+			<property name="enableSubPackages" value="true"/>
+		</sqlMapGenerator>
+
+		<!-- 指定mapper接口生成的位置
+		targetPackage、targetProject同javaModelGenerator中作用一样
+		-->
+		<javaClientGenerator type="XMLMAPPER" targetPackage="com.arvin.mapleforestbackend.mapper" targetProject="src/main/java">
+			<property name="enableSubPackages" value="true"/>
+		</javaClientGenerator>
+
+		<!-- 指定数据库表
+		domainObjectName：生成的domain类的名字,当表名和domain类的名字有差异时一定要设置，如果不设置，直接使用表名作为domain类的名字；
+		可以设置为somepck.domainName，那么会自动把domainName类再放到somepck包里面；
+		-->
+		<table tableName="user_order">
+			<!-- 参考 javaModelGenerator 的 constructorBased属性 -->
+			<property name="constructorBased" value="false" />
+			<generatedKey column="id" sqlStatement="JDBC" />
+		</table>
+	</context>
+</generatorConfiguration>
