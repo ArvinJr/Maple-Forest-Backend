@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.arvin.mapleforestbackend.mapper.OrderGoodsMapper" >
+  <resultMap id="BaseResultMap" type="com.arvin.mapleforestbackend.POJO.OrderGoods" >
+    <id column="order_id" property="orderId" jdbcType="BIGINT" />
+    <id column="goods_id" property="goodsId" jdbcType="BIGINT" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="map" >
+    delete from order_goods
+    where order_id = #{orderId,jdbcType=BIGINT}
+      and goods_id = #{goodsId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.arvin.mapleforestbackend.POJO.OrderGoods" >
+    insert into order_goods (order_id, goods_id)
+    values (#{orderId,jdbcType=BIGINT}, #{goodsId,jdbcType=BIGINT})
+  </insert>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select order_id, goods_id
+    from order_goods
+  </select>
+</mapper>
