@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.arvin.mapleforestbackend.mapper.GoodsMapper" >
+  <resultMap id="BaseResultMap" type="com.arvin.mapleforestbackend.POJO.Goods" >
+    <id column="goods_id" property="goodsId" jdbcType="BIGINT" />
+    <result column="goods_name" property="goodsName" jdbcType="VARCHAR" />
+    <result column="goods_price" property="goodsPrice" jdbcType="DECIMAL" />
+    <result column="goods_number" property="goodsNumber" jdbcType="INTEGER" />
+    <result column="goods_weight" property="goodsWeight" jdbcType="DOUBLE" />
+    <result column="alarm" property="alarm" jdbcType="BIT" />
+    <result column="create_by" property="createBy" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_by" property="updateBy" jdbcType="VARCHAR" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from goods
+    where goods_id = #{goodsId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.arvin.mapleforestbackend.POJO.Goods" >
+    insert into goods (goods_id, goods_name, goods_price, 
+      goods_number, goods_weight, alarm, 
+      create_by, create_time, update_by, 
+      update_time)
+    values (#{goodsId,jdbcType=BIGINT}, #{goodsName,jdbcType=VARCHAR}, #{goodsPrice,jdbcType=DECIMAL}, 
+      #{goodsNumber,jdbcType=INTEGER}, #{goodsWeight,jdbcType=DOUBLE}, #{alarm,jdbcType=BIT}, 
+      #{createBy,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updateBy,jdbcType=VARCHAR}, 
+      #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.arvin.mapleforestbackend.POJO.Goods" >
+    update goods
+    set goods_name = #{goodsName,jdbcType=VARCHAR},
+      goods_price = #{goodsPrice,jdbcType=DECIMAL},
+      goods_number = #{goodsNumber,jdbcType=INTEGER},
+      goods_weight = #{goodsWeight,jdbcType=DOUBLE},
+      alarm = #{alarm,jdbcType=BIT},
+      create_by = #{createBy,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_by = #{updateBy,jdbcType=VARCHAR},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where goods_id = #{goodsId,jdbcType=BIGINT}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select goods_id, goods_name, goods_price, goods_number, goods_weight, alarm, create_by, 
+    create_time, update_by, update_time
+    from goods
+    where goods_id = #{goodsId,jdbcType=BIGINT}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select goods_id, goods_name, goods_price, goods_number, goods_weight, alarm, create_by, 
+    create_time, update_by, update_time
+    from goods
+  </select>
+</mapper>
