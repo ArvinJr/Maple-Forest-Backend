@@ -19,7 +19,7 @@ public class User {
 
     private String password;
 
-    private Integer phoneNumber;
+    private Long phoneNumber;
 
     private String email;
 
